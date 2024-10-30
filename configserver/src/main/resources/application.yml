@@ -1,0 +1,47 @@
+#3、在 resources 路径下创建配置文件 application.yml，添加 Config Server 相关配置。
+server:
+  port: 8888 # 当前 Config Server 服务端口
+spring:
+  application:
+    name: configserver # 当前服务注册在 Eureka Server 上的名称
+  cloud:
+    config:
+      server:
+        git: # Git 仓库配置文件信息
+#          uri: https://github.com/tuyrk/myspringclouddemo.git # Git Repository 地址
+#          searchPaths: config # 配置文件路径
+#          username: root # 访问 Git Repository 的用户名
+#          password: root # 访问 Git Repository 的密码
+          uri: http://114.116.240.187:37813/web/erp-flexible-web21.git # Git Repository 地址
+          searchPaths: config # 配置文件路径
+          username: yuanbiliang # 访问 Git Repository 的用户名
+          password: ybl0612111 # 访问 Git Repository 的密码
+      label: master # Git Repository 的分支
+#动态更新
+    #如果此时对远程配置中心的配置文件进行修改，微服务需要重启以读取最新的配置信息，
+#    实际运行环境中这种频繁重启服务的方式是需要避免的，我们可以通过动态更新的方式，实现在不重启服务的前提下自动更新配置信息的功能。
+    #
+    #动态更新的实现需要借助于 Spring Cloud Bus 来完成，Spring Cloud Bus 是一个轻量级的分布式通信组件，
+#    它的原理是将各个微服务组件与消息代理进行连接，当配置文件发生改变时，会自动通知相关微服务组件，从而实现动态更新，具体实现如下。
+    #1、修改 Config Server 的 application.yml，添加 RabbitMQ
+#spring:
+#  cloud:
+#    bus:
+#      trace:
+#        enable: true
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8766/eureka/ # 注册中心的访问地址

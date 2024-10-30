@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>myspringclouddemo</artifactId>
+        <groupId>com.ybl</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>zipkin</artifactId>
+<!--1、在父工程下创建名为 zipkin 的 Module
+2、在 pom.xml 中添加 Zipkin Server 依赖。-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-server</artifactId>
+            <!--<version>2.12.9</version>-->
+            <version>2.12.3</version>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>zipkin</artifactId>-->
+                    <!--<groupId>io.zipkin.zipkin2</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-ui</artifactId>
+            <!--<version>2.12.9</version>-->
+            <version>2.12.3</version>
+        </dependency>
+    </dependencies>
+
+</project>

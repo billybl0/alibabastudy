@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>myspringclouddemo</artifactId>
+        <groupId>com.ybl</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <!--1、在父工程下创建名为 gateway 的 Module-->
+    <!--2、在 pom.xml 中添加 Zuul 和 Eureka Client 依赖，Zuul 也作为一个 Eureka Client 在注册中心完成注册。-->
+    <artifactId>gateway</artifactId>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--boot web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!--<version>1.18.8</version>-->
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--&lt;!&ndash;<artifactId>spring-cloud-starter-netflix-zuul</artifactId>&ndash;&gt;-->
+            <!--<artifactId>spring-cloud-starter-netflix-zuul</artifactId>-->
+            <!--&lt;!&ndash;作者大大, 把spring-cloud-starter-netflix-eureka-server.-->
+                        <!--改成spring-cloud-netflix-eureka-server 去掉了start 就好了&ndash;&gt;-->
+            <!--&lt;!&ndash;<artifactId>spring-cloud-netflix-zuul</artifactId>&ndash;&gt;-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+            <!--<version>2.0.2.RELEASE</version>-->
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <!--<repository>-->
+            <!--<id>spring-milestones</id>-->
+            <!--<name>Spring Milestones</name>-->
+            <!--<url>https://repo.spring.io/milestone</url>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+        <!--</repository>-->
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+            <id>codehausSnapshots</id>
+            <name>Codehaus Snapshots</name>
+            <url>https://repository-master.mulesoft.org/nexus/content/groups/public/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+</project>

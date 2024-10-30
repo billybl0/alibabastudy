@@ -1,0 +1,13 @@
+#3、在 resources 路径下创建配置文件 application.yml，添加网关相关配置
+server:
+  port: 8030 # 当前 gateway 服务端口
+spring:
+  application:
+    name: gateway # 当前服务注册在 Eureka Server 上的名称
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8766/eureka/ # 注册中心的访问地址
+zuul:
+  routes: # 自定义微服务的访问路径
+    provider: /p/** # provider 微服务就会被映射到 gateway 的 /p/** 路径

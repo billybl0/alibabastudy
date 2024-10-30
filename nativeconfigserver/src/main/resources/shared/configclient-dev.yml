@@ -1,0 +1,5 @@
+#4、在 resources 路径下新建 shared 文件夹，
+#  并在此目录下创建本地配置文件 configclient-dev.yml，定义 port 和 foo 信息
+server:
+  port: 8070
+foo: foo version 1

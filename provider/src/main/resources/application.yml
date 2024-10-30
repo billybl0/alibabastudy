@@ -1,0 +1,12 @@
+#3、在 resources 路径下创建配置文件 application.yml，添加 Eureka Client 相关配置，此时的 Eureka Client 是服务提供者 provider
+server:
+  port: 8010 # 当前 Eureka Client 服务端口
+spring:
+  application:
+    name: provider # 当前服务注册在 Eureka Server 上的名称
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8766/eureka/ # 注册中心的访问地址
+  instance:
+    prefer-ip-address: true # 是否将当前服务的 IP 注册到 Eureka Server

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ybl</groupId>
+    <artifactId>myspringclouddemo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <!--3、在父工程下创建一个名为 registrycenter 的 Module，实现 Eureka Server。-->
+        <module>registrycenter</module>
+        <module>provider</module>
+        <module>consumer</module>
+        <module>gateway</module>
+        <module>ribbon</module>
+        <module>feign</module>
+        <module>hystrix</module>
+        <module>nativeconfigserver</module>
+        <module>nativeconfigclient</module>
+        <module>configserver</module>
+
+        <module>zipkin</module>
+        <module>zipkinclient</module>
+        <module>configclient2</module>
+
+    </modules>
+    <!-- 首先修改打包方式 -->
+    <packaging>pom</packaging>
+
+    <!--1、首先创建一个 Maven 父工程myspringclouddemo
+    2、在 pom.xml 中添加相关依赖，Spring Cloud Finchley 使用的是 Spring Boot 2.0.x，不能使用 Spring Boot 1.5.x。-->
+    <!-- 引入 Spring Boot 的依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.7.RELEASE</version>
+    </parent>
+
+    <!-- 引入 Spring Cloud 的依赖，管理 Spring Cloud 各组件 -->
+    <dependencyManagement>
+        <dependencies>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--&lt;!&ndash;<artifactId>spring-boot-starter-parent</artifactId>&ndash;&gt;-->
+                <!--<artifactId>spring-boot-dependencies</artifactId>-->
+                <!--&lt;!&ndash;<version>2.0.7.RELEASE</version>&ndash;&gt;-->
+                <!--<version>2.1.4.RELEASE</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
+            <!-- springCloud的依赖-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.SR2</version>
+                <!--<version>Greenwich.SR1</version>-->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.8</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+<!--    <dependencies>
+        &lt;!&ndash; 解决 JDK9 以上版本没有 JAXB API jar 的问题，JDK9 以下版本不需要配置 &ndash;&gt;
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+    </dependencies>-->
+
+</project>

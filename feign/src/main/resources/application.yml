@@ -1,0 +1,21 @@
+#3、在配置文件 application.yml 添加 Feign 相关配置
+server:
+  port: 8050 # 当前 Feign 服务端口
+spring:
+  application:
+    name: feign # 当前服务注册在 Eureka Server 上的名称
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8766/eureka/ # 注册中心的访问地址
+  instance:
+    prefer-ip-address: true # 是否将当前服务的 IP 注册到 Eureka Server
+# 9、Feign 同时提供了容错功能。如果服务提供者 Provider 出现故障无法访问，
+#  访问 Feign 会直接报错：Internal Server Error
+#  显然这种直接返回错误状态码的交互方式很不友好，可以通过容错机制给用户相应的提示信息，而非错误状态码，
+#  使得交互方式更加友好。使用容错机制非常简单：
+#在 application.yml 中添加配置
+feign:
+  hystrix:
+    # 是否开启熔断器
+    enabled: true

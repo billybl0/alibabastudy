@@ -1,0 +1,28 @@
+#3、在 resources 路径下创建 bootstrap.yml，配置读取本地配置中心的相关信息
+spring:
+  application:
+#    name: nativeconfigclient # 当前服务注册在 Eureka Server 上的名称
+    name: configclient # 当前服务注册在 Eureka Server 上的名称
+  profiles:
+    active: dev # 配置文件名，这里需要与当前微服务在 Eureka Server 注册的名称结合起来使用，两个值用 - 连接，
+#    比如当前微服务的名称是 configclient，profiles.active 的值是 dev，
+#  那么就会在本地 Config Server 中查找名为 configclient-dev 的配置文件
+  cloud:
+    config:
+      uri: http://localhost:8762 # 本地 Config Server 的访问路径
+      fail-fast: true # 设置客户端优先判断 config server 获取是否正常，并快速响应失败内容
+#      ++
+#客户端的配置文件名尽量使用bootstrap.yml命名,这个是最先加载的配置文件,避免遇到一些启动时的错误
+  #
+  #比如当该客户端涉及到对数据访问层的操作,
+  #
+  #应用启动时会自动加载数据库的一些配置,
+  #
+  #这时你的配置文件需要从码云拉取,
+  #
+  #这时就会出现错误,所以需要使用bootstrap.yml来管理配置文件拉取
+  #
+  #另外我自己也采坑了就是
+  #
+  #我是用application.yml配置去eureka拉取config-server获取配置文件出现的问题
+#  https://www.cnblogs.com/a-small-lyf/p/10852975.html

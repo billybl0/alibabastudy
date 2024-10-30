@@ -1,0 +1,23 @@
+#5、在 resources 路径下创建配置文件 application.yml，添加 Eureka Server 相关配置。
+server:
+  port: 8766 # 当前 Eureka Server 服务端口
+eureka:
+#  instance:
+#    hostname: eureka8766
+  client:
+    register-with-eureka: false # 是否将当前 Eureka Server 服务作为客户端进行注册
+#    register-with-eureka: true # 是否将当前 Eureka Server 服务作为客户端进行注册
+    #  8、「No instances avaliable」 表示当前没有发现微服务实例，即没有微服务完成注册。如果我们将 application.yml 中的 register-with-eureka 属性值改为 true，则表示 Eureka Server 将自己作为客户端进行注册。
+    #  9、重启 RegistryCenterApplication，打开浏览器访问http://localhost:8761，当前注册中心有一个客户端服务注册在案，即 Eureka Server 本身。
+    fetch-registry: false # 是否获取其他 Eureka Server 服务的数据
+#    registerWithEureka: false
+#    fetchRegistry: false
+    service-url:
+      #      defaultZone: http://eureka8761:8761/eureka/ # 注册中心的访问地址
+      #      defaultZone: http://192.168.206.25:8761/eureka/ # 注册中心的访问地址
+      defaultZone: http://127.0.0.1:8766/eureka/ # 注册中心的访问地址
+spring:
+  application:
+    name: eureka8766
+  freemarker:
+    prefer-file-system-access: false

@@ -1,0 +1,32 @@
+#1、在父工程下创建文件夹 config，config 中创建 configclient.yml。
+#2、configclient.yml 中配置客户端相关信息。
+server:
+  port: 8070
+#  5、修改 config 中的配置文件，将端口改为 8080，并更新到 GitHub
+#  port: 8080
+#6、在不重启服务的前提下，实现配置文件的动态更新，启动 RabbitMQ
+  #7、发送 POST 请求，访问 http://localhost:8070/actuator/bus-refresh
+  #
+  #curl -X POST http://localhost:8070/actuator/bus-refresh
+  #1
+  #8、这样就实现动态更新了，再来访问 http://localhost:8070/config/index，可以看到端口已经更新为 8080
+  #
+  #curl -X GET http://localhost:8070/config/index
+  #1
+  #9、设置 GitHub 自动推送更新，添加 Webhooks，如下图所示
+  #
+  #Settings -> Webhooks -> Add webhook
+  #
+  #
+  #10、在 Payload URL 输入你的服务地址，如 http://localhost:8070/actuator/bus-refresh，注意将 localhost 替换成服务器的外网 IP。
+spring:
+  application:
+    name: configclient
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8766/eureka/
+management:
+  security:
+    enabled: false
+#3、将 config 上传至 GitHub，作为远程配置文件。
